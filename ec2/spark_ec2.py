@@ -319,6 +319,7 @@ def launch_cluster(conn, opts, cluster_name):
         master_group.authorize('tcp', 50070, 50070, authorized_address)
         master_group.authorize('tcp', 60070, 60070, authorized_address)
         master_group.authorize('tcp', 4040, 4045, authorized_address)
+        master_group.authorize('tcp', 7077, 7077, authorized_address)
         if opts.ganglia:
             master_group.authorize('tcp', 5080, 5080, authorized_address)
     if slave_group.rules == []:  # Group was just now created
