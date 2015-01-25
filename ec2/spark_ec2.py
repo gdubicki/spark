@@ -331,7 +331,8 @@ def launch_cluster(conn, opts, cluster_name):
         slave_group.authorize('tcp', 50075, 50075, authorized_address)
         slave_group.authorize('tcp', 60060, 60060, authorized_address)
         slave_group.authorize('tcp', 60075, 60075, authorized_address)
-
+        slave_group.authorize('tcp', 4040, 4040, authorized_address)
+        
     # Check if instances are already running in our groups
     existing_masters, existing_slaves = get_existing_cluster(conn, opts, cluster_name,
                                                              die_on_error=False)
