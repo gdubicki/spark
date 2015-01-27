@@ -713,15 +713,10 @@ def get_num_disks(instance_type):
 def deploy_files(conn, root_dir, opts, master_nodes, slave_nodes, modules):
     active_master = master_nodes[0].public_dns_name
 
-    num_disks = get_num_disks(opts.instance_type)
+    # We always use single dirs now - RAID0 in /mnt or EBS no 1 on /vol0 (see setup-slave.sh in spark-ec2 project)
     hdfs_data_dirs = "/mnt/ephemeral-hdfs/data"
     mapred_local_dirs = "/mnt/hadoop/mrlocal"
     spark_local_dirs = "/mnt/spark"
-    if num_disks > 1:
-        for i in range(2, num_disks + 1):
-            hdfs_data_dirs += ",/mnt%d/ephemeral-hdfs/data" % i
-            mapred_local_dirs += ",/mnt%d/hadoop/mrlocal" % i
-            spark_local_dirs += ",/mnt%d/spark" % i
 
     cluster_url = "%s:7077" % active_master
 
