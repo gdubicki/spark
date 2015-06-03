@@ -63,10 +63,10 @@ VALID_SPARK_VERSIONS = set([
 
 DEFAULT_SPARK_VERSION = SPARK_EC2_VERSION
 DEFAULT_SPARK_GITHUB_REPO = "https://github.com/apache/spark"
-MESOS_SPARK_EC2_BRANCH = "branch-1.3"
+MESOS_SPARK_EC2_BRANCH = "branch-1.3-gd"
 
 # A URL prefix from which to fetch AMI information
-AMI_PREFIX = "https://raw.github.com/mesos/spark-ec2/{b}/ami-list".format(b=MESOS_SPARK_EC2_BRANCH)
+AMI_PREFIX = "https://raw.github.com/grzegorz-dubicki/spark-ec2/{b}/ami-list".format(b=MESOS_SPARK_EC2_BRANCH)
 
 
 def setup_boto():
@@ -655,7 +655,7 @@ def setup_cluster(conn, master_nodes, slave_nodes, opts, deploy_ssh_key):
         opts=opts,
         command="rm -rf spark-ec2"
         + " && "
-        + "git clone https://github.com/mesos/spark-ec2.git -b {b}".format(b=MESOS_SPARK_EC2_BRANCH)
+        + "git clone https://github.com/grzegorz-dubicki/spark-ec2.git -b {b}".format(b=MESOS_SPARK_EC2_BRANCH)
     )
 
     print "Deploying files to master..."
